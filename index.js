@@ -11,10 +11,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const playersRoute = require('./routes/players');
-const Player = require('./models/Player');
-const { player } = require('./routes/players');
+const roomsRoute = require('./routes/rooms');
 
 app.use('/players', playersRoute);
+app.use('/rooms', roomsRoute);
 
 app.get('/', (req, res) => {
   res.send('We are on home');
