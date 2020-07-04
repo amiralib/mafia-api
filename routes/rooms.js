@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Room = require('../models/Player');
+const Room = require('../models/Room');
 
 router.get('/', async (req, res) => {
   try {
