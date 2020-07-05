@@ -37,4 +37,36 @@ router.delete('/:roomId', async (req, res) => {
   }
 });
 
+router.patch('/:roomId', async (req, res) => {
+  try {
+    const updatedRoom = await Room.update({
+      _id: req.params.roomId,
+      $addToSet: {
+        players: req.body.player
+      }
+    });
+    res.json(updatedRoom);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+router.get('/:roomId', async (req, res) => {
+  try {
+    const room = await Room.findById(req.params.roomId);
+    res.json(room);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+router.delete('/', async (req, res) => {
+  try {
+    const deleted = await Room.deleteMany({});
+    res.json(deleted);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 module.exports = router;

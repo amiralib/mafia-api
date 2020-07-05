@@ -20,7 +20,7 @@ const RoomSchema = mongoose.Schema({
   },
   players: {
     type: [String],
-    required: true
+    default: []
   }
 });
 
