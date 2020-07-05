@@ -28,4 +28,13 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.delete('/:roomId', async (req, res) => {
+  try {
+    const removedRoom = await Room.deleteOne({ _id: req.params.roomId });
+    res.json(removedRoom);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 module.exports = router;
