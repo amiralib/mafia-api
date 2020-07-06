@@ -42,7 +42,7 @@ router.patch('/:roomId', async (req, res) => {
     const updatedRoom = await Room.findOneAndUpdate(
       { _id: req.params.roomId },
       {
-        $addToSet: {
+        $push: {
           players: req.body.player
         }
       },
@@ -83,5 +83,25 @@ router.get('/code/:roomCode', async (req, res) => {
     res.json({ message: err });
   }
 });
+
+router.delete('/players/:roomId', async (req, res) => {
+  try {
+    const updatedPlayers = await Room.findOneAndUpdate(
+      { _id: req.params.roomId },
+      {
+        $pull: {
+          players: req.body.player
+        }
+      },
+      {
+        rawResult: true,
+        useFindAndModify: false
+      }
+    );
+    res.json(updatedPlayers);
+  } catch (err) {
+    res.json({ message: err });
+  }
+})
 
 module.exports = router;
