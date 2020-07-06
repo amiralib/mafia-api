@@ -39,10 +39,8 @@ router.delete('/:roomId', async (req, res) => {
 
 router.patch('/:roomId', async (req, res) => {
   try {
-    const updatedRoom = await Room.updateOne(
-      {
-        _id: req.params.roomId
-      },
+    const updatedRoom = await Room.findOneAndUpdate(
+      { _id: req.params.roomId },
       {
         $addToSet: {
           players: req.body.player

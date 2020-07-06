@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 const DB_URL = process.env.DB_URL;
 
 mongoose.connect(DB_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   () => console.log('>> connected to database')
 );
 
