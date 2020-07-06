@@ -45,6 +45,10 @@ router.patch('/:roomId', async (req, res) => {
         $addToSet: {
           players: req.body.player
         }
+      },
+      {
+        rawResult: true,
+        useFindAndModify: false
       }
     );
     res.json(updatedRoom);
