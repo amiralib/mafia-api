@@ -69,4 +69,13 @@ router.delete('/', async (req, res) => {
   }
 });
 
+router.get('/code/:roomCode', async (req, res) => {
+  try {
+    const room = await Room.findOne({ code: req.params.roomCode });
+    res.json(room);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 module.exports = router;
