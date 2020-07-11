@@ -43,7 +43,9 @@ router.patch('/:roomId', async (req, res) => {
       { _id: req.params.roomId },
       {
         $push: {
-          players: req.body.player
+          players: {
+            name: req.body.player
+          }
         }
       },
       {
