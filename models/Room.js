@@ -18,10 +18,19 @@ const RoomSchema = mongoose.Schema({
     type: [String],
     required: true
   },
-  players: {
-    type: [String],
-    required: true
-  }
+  players: [{
+    name: {
+      type: String,
+      required: true
+    },
+    role: {
+      type: String
+    },
+    selections: {
+      type: [String],
+      default: []
+    }
+  }]
 });
 
 module.exports = mongoose.model('Rooms', RoomSchema);

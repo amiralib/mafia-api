@@ -90,7 +90,9 @@ router.delete('/players/:roomId', async (req, res) => {
       { _id: req.params.roomId },
       {
         $pull: {
-          players: req.body.player
+          players: {
+            name: req.body.player
+          }
         }
       },
       {
